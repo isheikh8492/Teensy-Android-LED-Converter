@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
-    public final String ACTION_USB_PERMISSION = "com.hariharan.arduinousb.USB_PERMISSION";
+    public final String ACTION_USB_PERMISSION = "com.example.arduinoandroidled.USB_PERMISSION";
     Button startButton, sendButton, clearButton, stopButton;
     TextView textView;
     EditText editText;
@@ -146,6 +146,7 @@ public class MainActivity extends Activity {
         String string = editText.getText().toString();
         serialPort.write(string.getBytes());
         tvAppend(textView, "\nData Sent : " + string + "\n");
+        editText.setText("");
 
     }
 
