@@ -27,7 +27,6 @@ public class MainActivity extends Activity {
     public final String ACTION_USB_PERMISSION = "com.example.arduinoandroidled.USB_PERMISSION";
     Button startButton, sendButton, clearButton, stopButton;
     TextView textView;
-    EditText editText;
     UsbManager usbManager;
     UsbDevice device;
     UsbSerialDevice serialPort;
@@ -96,7 +95,6 @@ public class MainActivity extends Activity {
         sendButton = (Button) findViewById(R.id.buttonSend);
         clearButton = (Button) findViewById(R.id.buttonClear);
         stopButton = (Button) findViewById(R.id.buttonStop);
-        editText = (EditText) findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
         setUiEnabled(false);
         IntentFilter filter = new IntentFilter();
@@ -143,10 +141,10 @@ public class MainActivity extends Activity {
     }
 
     public void onClickSend(View view) {
-        String string = editText.getText().toString();
+//        String string = editText.getText().toString();
+        String string = "ON".toString();
         serialPort.write(string.getBytes());
         tvAppend(textView, "\nData Sent : " + string + "\n");
-        editText.setText("");
 
     }
 
@@ -158,7 +156,10 @@ public class MainActivity extends Activity {
     }
 
     public void onClickClear(View view) {
-        textView.setText(" ");
+        String string = "OFF".toString();
+        serialPort.write(string.getBytes());
+        tvAppend(textView, "\nData Sent : " + string + "\n");
+
     }
 
     private void tvAppend(TextView tv, CharSequence text) {
