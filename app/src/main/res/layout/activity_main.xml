@@ -11,27 +11,26 @@
     tools:context=".MainActivity">
 
 
+    <!--    <Button-->
+    <!--        android:id="@+id/buttonSend"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:onClick="onClickSend"-->
+    <!--        android:text="ON"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />-->
+
     <Button
         android:id="@+id/buttonStart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
         android:onClick="onClickStart"
         android:text="Begin"
+        app:layout_constraintBottom_toTopOf="@+id/buttonToggle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSend"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onClickSend"
-        android:text="ON"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonStart" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -43,26 +42,57 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
+    <!--    <Button-->
+    <!--        android:id="@+id/buttonClear"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginTop="12dp"-->
+    <!--        android:onClick="onClickClear"-->
+    <!--        android:text="OFF"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.498"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/buttonSend" />-->
+
     <Button
         android:id="@+id/buttonStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="112dp"
         android:onClick="onClickStop"
         android:text="Stop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonClear" />
-
-    <Button
-        android:id="@+id/buttonClear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:onClick="onClickClear"
-        android:text="OFF"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSend" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClickToggle"
+        android:text="Toggle"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+<!--        app:layout_constrainttop="@id/buttonStop" />-->
+
+    <TextView
+        android:id="@+id/Indicator"
+        android:layout_width="110dp"
+        android:layout_height="76dp"
+        android:layout_marginBottom="132dp"
+        android:text="OFF"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textColorHighlight="#FF0000"
+        android:textColorHint="#FF0000"
+        android:textColorLink="#FF0000"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/buttonStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -25,8 +25,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends Activity {
+    private boolean toggleFlag = false;
     public final String ACTION_USB_PERMISSION = "com.example.arduinoandroidled.USB_PERMISSION";
-    Button startButton, sendButton, clearButton, stopButton;
+    Button startButton, sendButton, clearButton, stopButton, toggleButton;
+    TextView indicator;
     TextView textView;
     UsbManager usbManager;
     UsbDevice device;
@@ -94,10 +96,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         usbManager = (UsbManager) getSystemService(this.USB_SERVICE);
         startButton = (Button) findViewById(R.id.buttonStart);
-        sendButton = (Button) findViewById(R.id.buttonSend);
-        clearButton = (Button) findViewById(R.id.buttonClear);
+//        sendButton = (Button) findViewById(R.id.buttonSend);
+//        clearButton = (Button) findViewById(R.id.buttonClear);
         stopButton = (Button) findViewById(R.id.buttonStop);
+        toggleButton = (Button) findViewById(R.id.buttonToggle);
         textView = (TextView) findViewById(R.id.textView);
+        indicator = (TextView) findViewById(R.id.Indicator);
         setUiEnabled(false);
         IntentFilter filter = new IntentFilter();
         filter.addAction(ACTION_USB_PERMISSION);
@@ -110,7 +114,7 @@ public class MainActivity extends Activity {
 
     public void setUiEnabled(boolean bool) {
         startButton.setEnabled(!bool);
-        sendButton.setEnabled(bool);
+//        sendButton.setEnabled(bool);
         stopButton.setEnabled(bool);
         textView.setEnabled(bool);
 
@@ -142,7 +146,22 @@ public class MainActivity extends Activity {
 
     }
 
+    public void onClickToggle(View view) {
+        if (stopButton.isEnabled()) {
+            if (!toggleFlag) {
+                onClickSend(startButton);
+                indicator.setText("ON");
+                indicator.setTextColor(getResources().getColor(R.color.green));
+            } else {
+                onClickClear(clearButton);
+                indicator.setText("OFF");
+                indicator.setTextColor(getResources().getColor(R.color.red));
+            }
+        }
+    }
+
     public void onClickSend(View view) {
+        toggleFlag = true;
 //        String string = editText.getText().toString();
         String string = "ON".toString();
         serialPort.write(string.getBytes());
@@ -151,6 +170,12 @@ public class MainActivity extends Activity {
     }
 
     public void onClickStop(View view) {
+        if (toggleFlag) {
+            onClickClear(clearButton);
+            indicator.setText("OFF");
+            indicator.setTextColor(getResources().getColor(R.color.red));
+        }
+        textView.setText("");
         setUiEnabled(false);
         serialPort.close();
         Date currentTime = Calendar.getInstance().getTime();
@@ -159,6 +184,7 @@ public class MainActivity extends Activity {
     }
 
     public void onClickClear(View view) {
+        toggleFlag = false;
         String string = "OFF".toString();
         serialPort.write(string.getBytes());
         tvAppend(textView, "\nData Sent : " + string + "\n");
