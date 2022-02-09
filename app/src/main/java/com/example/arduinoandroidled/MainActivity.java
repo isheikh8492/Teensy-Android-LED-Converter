@@ -61,7 +61,7 @@ public class MainActivity extends Activity {
                     if (serialPort != null) {
                         if (serialPort.open()) { //Set Serial Connection Parameters.
                             setUiEnabled(true);
-                            serialPort.setBaudRate(9600);
+                            serialPort.setBaudRate(115200);
                             serialPort.setDataBits(UsbSerialInterface.DATA_BITS_8);
                             serialPort.setStopBits(UsbSerialInterface.STOP_BITS_1);
                             serialPort.setParity(UsbSerialInterface.PARITY_NONE);
@@ -128,7 +128,7 @@ public class MainActivity extends Activity {
             for (Map.Entry<String, UsbDevice> entry : usbDevices.entrySet()) {
                 device = entry.getValue();
                 int deviceVID = device.getVendorId();
-                if (deviceVID == 0x2341)//Arduino Vendor ID
+                if (deviceVID == 0x16C0)//Teensy Vendor ID
                 {
                     PendingIntent pi = PendingIntent.getBroadcast(this, 0, new Intent(ACTION_USB_PERMISSION), 0);
                     usbManager.requestPermission(device, pi);
@@ -147,6 +147,7 @@ public class MainActivity extends Activity {
     }
 
     public void onClickToggle(View view) {
+        tvAppend(textView,"\n" + "TOGGLE BUTTON DETECTED \n");
         if (stopButton.isEnabled()) {
             if (!toggleFlag) {
                 onClickSend(startButton);
